@@ -18,4 +18,49 @@
     </section>
 
 </body>
-</html>
+        <!-- MERGE CONFLICT DEMO SECTION — Zakariya Abdisalam 260075 -->
+        <section id="merge-conflict-demo" aria-labelledby="conflict-heading" data-author="Zakariya Abdisalam 260075">
+            <h2 id="conflict-heading">Merge Conflict Demo</h2>
+            <p>
+                This section documents the Git merge conflict that was intentionally created and resolved
+                during Phase 5 of the collaboration session.
+            </p>
+
+                <h3>What Is a Merge Conflict?</h3>
+                <p>
+                    A merge conflict occurs when two branches make different changes to the same line of a file.
+                    Git cannot automatically decide which version to keep, so it pauses and asks the developer to
+                    resolve it manually.
+                </p>
+
+                <h3>How the Conflict Was Created</h3>
+                <ol>
+                    <li>Zakariya (260075) created branch <code>feature/260075-conflict-demo</code> from <code>main</code>.</li>
+                    <li>David (260056) created a separate branch from <code>main</code> and both edited the same line — the <code>&lt;title&gt;</code> tag in <code>index.html</code>.</li>
+                    <li>David's branch was merged into <code>main</code> first via Pull Request.</li>
+                    <li>Zakariya then ran <code>git pull origin main</code> — Git detected a conflict and halted the merge.</li>
+                </ol>
+
+                <h3>How the Conflict Was Resolved</h3>
+                <ol>
+                    <li>Opened <code>index.html</code> and located the conflict markers:<br>
+                        <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; origin/main</code>
+                    </li>
+                    <li>Removed the conflict markers and kept the correct final content.</li>
+                    <li>Staged the resolved file: <code>git add index.html</code></li>
+                    <li>Committed the resolution: <code>git commit -m "fix: resolve merge conflict on page title"</code></li>
+                    <li>Pushed the branch and opened a final PR for David to review and merge.</li>
+                </ol>
+
+                <h3>Key Git Commands Used</h3>
+                <ul>
+                    <li><code>git pull origin main</code> — fetches remote changes and attempts to merge</li>
+                    <li><code>git status</code> — shows files with unresolved conflicts</li>
+                    <li><code>git add index.html</code> — marks the conflict as resolved</li>
+                    <li><code>git commit -m "fix: resolve merge conflict on page title"</code> — finalises the merge</li>
+                    <li><code>git push origin feature/260075-conflict-demo</code> — pushes resolved branch</li>
+                </ul>
+            </section>
+
+    </body>
+    </html>
