@@ -1,12 +1,43 @@
+name: Deploy via SSH
+
+# 1. Triggers the workflow on push events but only for the "main" branch
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  deploy:
+  # Standardize the job name
+  deploy_to_server:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout code
+      # Step 1: Standard Checkout of your code (recommended)
+      - name: Checkout Code
         uses: actions/checkout@v4
 
+      # Step 2: REPLACE YOUR MANUAL SCRIPT with this action.
+      # This replaces the entire "install ssh keys" block in your image.
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
+          # This should be your Ed25519 PRIVATE KEY (from step 3 of my first reply)
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          
+          # This action handles the 'ssh-keyscan' for you automatically 
+          # by checking this hostname/IP.
+          known_hosts: ${{ secrets.SSH_HOST }}
+
+      # Step 3: Run the commands on the remote server
+      # Your original logic was good here.
+      - name: Connect and Pull
+        run: |
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            cd ${{ secrets.WORK_DIR }}
+            git checkout ${{ secrets.MAIN_BRANCH }}
+            git pull
+          EOF
+
+      # CLEANUP STEP REMOVED: The `ssh-key-action` automatically removes
+      # the SSH key from the runner when the job finishes, so you don't
+      # need the risky `rm -rf ~/.ssh` command anymore.
