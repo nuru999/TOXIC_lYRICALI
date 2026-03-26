@@ -1,6 +1,4 @@
-Here’s a clean, professional `README.md` you can use for an artist website focused on **Toxic Lyrikali**. You can customize sections as needed.
 
----
 
 # 🎤 Toxic Lyrikali — Official Artist Website
 
@@ -48,21 +46,18 @@ The project is built using:
 ## 📁 Project Structure
 
 ```
-/project-root
+/TOXIC_LYRICALI
 │
-├── index.php / index.html   # Homepage
-├── assets/
-│   ├── css/                # Stylesheets
-│   ├── js/                 # Scripts
-│   └── images/             # Media files
+├── index.html
+├── MEDIA
+│   ├── screenshot #screenshot files are here       
+│   ├──                
+│   └── 
 │
-├── pages/
-│   ├── music.php           # Music page
-│   ├── about.php           # About artist
-│   ├── contact.php         # Contact page
+├── about.html
+│   
 │
-├── config/
-│   └── db.php              # Database connection
+├── discography.html
 │
 └── README.md
 ```
